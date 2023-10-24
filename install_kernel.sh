@@ -11,7 +11,8 @@
 if [ $# -eq 1 ];
 then
 	VERSION=$1
-	if [ ! -d "$1_kernel_install.tar.gz" ];then
+	echo "installing kernel version [$1]..."
+	if [ ! -f "$1_kernel_install.tar.gz" ];then
 		echo "[ERROR] target kernel zipfile not exist!"
 		exit
 	fi
@@ -25,6 +26,7 @@ then
 
 	update-initramfs -c -k $1
 	u-boot-update
+	echo "install kernel version [$1] complete!"
 else
 	echo "[ERROR] invalid arguement!"
 	echo "usage: (somewhere)/install_kernel.sh [\$kernel_version]"
